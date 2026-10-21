@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aritra Ambudh Dutta</title>
+  <meta name="description" content="Aritra Ambudh Dutta — CS undergraduate at IIT Kanpur working on machine learning for language and vision, and low-latency systems.">
+  <link rel="icon" href="images/favicon/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);if(localStorage.getItem('sidebar')==='rail')document.documentElement.classList.add('rail');}catch(e){}</script>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card: #fffdf9;
+      --ink: #2a2420;
+      --muted: #6f665d;
+      --faint: #9a9086;
+      --line: #ebe3d8;
+      --accent: #b9532a;
+      --accent-soft: #f6e6dc;
+      --research: #b9532a;
+      --work: #3f6db3;
+      --edu: #4f8a5b;
+      --serif: Fraunces, Georgia, serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #181513; --card: #211d1a; --ink: #f0e9e0; --muted: #b0a597; --faint: #82786d; --line: #36302a;
+        --accent: #ec8a5e; --accent-soft: #3a2519; --research: #ec8a5e; --work: #85aaf0; --edu: #8cc795;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #181513; --card: #211d1a; --ink: #f0e9e0; --muted: #b0a597; --faint: #82786d; --line: #36302a;
+      --accent: #ec8a5e; --accent-soft: #3a2519; --research: #ec8a5e; --work: #85aaf0; --edu: #8cc795;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.7 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; transition: background .2s, color .2s; }
+    a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    svg.i { width: 16px; height: 16px; flex: none; }
+
+    .layout { max-width: 1060px; margin: 0 auto; padding: 56px 28px; display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; transition: grid-template-columns .35s ease, max-width .35s ease; }
+
+    /* Sidebar */
+    /* Sticky, but scrolls on its own when taller than the window */
+    .side { position: sticky; top: 32px; align-self: start; max-height: calc(100vh - 48px); overflow-y: auto; overscroll-behavior: contain; padding: 16px 22px 24px; margin: -16px -22px 0; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+    .side::-webkit-scrollbar { width: 6px; }
+    .side::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
+    .avatar { display: block; transition: width .35s ease, height .35s ease, border-width .35s ease; width: 164px; height: 164px; border-radius: 50%; object-fit: cover; object-position: 50% 50%; border: 5px solid var(--card); box-shadow: 0 0 0 1px var(--line), 0 10px 30px rgba(90,60,30,.12); }
+    .side h1 { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.15; letter-spacing: -.01em; margin: 22px 0 6px; }
+    .side .role { color: var(--muted); font-size: 15px; line-height: 1.5; margin: 0 0 18px; }
+    .side .role span { display: block; white-space: nowrap; }
+    .side ul { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 4px; }
+    .side li a { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 15px; padding: 5px 8px; margin: 0 -8px; border-radius: 8px; }
+    .side li a:hover { background: var(--accent-soft); color: var(--accent); }
+    .side li svg { color: var(--faint); }
+    .side li a:hover svg { color: var(--accent); }
+    .now { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .now b { display: block; color: var(--ink); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+    .cv-note { font-size: 13.5px; margin: -10px 0 18px; }
+    .cv-note a { color: var(--muted); text-decoration: underline; text-decoration-color: var(--line); }
+    .cv-note a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    html.rail .cv-note { display: none; }
+    .side-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; font: 500 13.5px Inter, sans-serif; color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 99px; padding: 6px 12px; cursor: pointer; }
+    .pill:hover { color: var(--ink); border-color: var(--faint); }
+    .collapse-btn svg, .menu-btn svg { transition: transform .35s ease; }
+    .menu-btn { display: none; }
+
+    /* Collapsed rail (desktop): photo + icons only */
+    @media (min-width: 861px) {
+      html.rail .layout { grid-template-columns: 52px minmax(0, 1fr); max-width: 960px; }
+      html.rail .avatar { width: 52px; height: 52px; border-width: 2px; }
+      html.rail .side h1, html.rail .side .role, html.rail .now { display: none; }
+      html.rail .side ul { justify-items: center; margin: 22px 0 0; }
+      html.rail .side li a { margin: 0; padding: 9px; }
+      html.rail .side .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+      html.rail .side-actions { flex-direction: column; align-items: center; }
+      html.rail .pill { padding: 9px; }
+      html.rail .collapse-btn svg { transform: rotate(180deg); }
+      html.rail main { max-width: 780px; }
+    }
+    .theme-btn .moon, :root[data-theme="dark"] .theme-btn .sun { display: none; }
+    :root[data-theme="dark"] .theme-btn .moon { display: block; }
+
+    /* Main */
+    main { max-width: 680px; transition: max-width .35s ease; }
+    .hello { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4.4vw, 40px); line-height: 1.15; letter-spacing: -.015em; margin: 4px 0 22px; }
+    .hello em { font-style: italic; color: var(--accent); }
+    main > section { margin-bottom: 56px; }
+    main p { margin: 0 0 14px; }
+    h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; letter-spacing: -.01em; margin: 0 0 18px; display: flex; align-items: center; gap: 14px; }
+    h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-size: 13.5px; padding: 5px 12px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); color: var(--muted); }
+
+    .updates { list-style: none; margin: 0; padding: 0; }
+    .updates li { display: grid; grid-template-columns: 86px 1fr; gap: 14px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+    .updates li:last-child { border-bottom: 0; }
+    .updates time { font-size: 13px; font-weight: 600; color: var(--accent); padding-top: 2px; }
+
+    /* Timeline */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -4px 0 22px; }
+    .filter { display: inline-flex; align-items: center; gap: 7px; font: 500 13.5px Inter, sans-serif; color: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 5px 13px; cursor: pointer; transition: color .2s, border-color .2s, background .2s; }
+    .filter i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+    .filter:hover { color: var(--ink); border-color: var(--faint); }
+    .filter[aria-pressed="true"] { color: var(--ink); border-color: var(--c, var(--ink)); background: color-mix(in srgb, var(--c, var(--ink)) 12%, var(--card)); }
+    .tl > li { transition: opacity .3s ease, transform .3s ease; }
+    .tl > li.hide { display: none; }
+    .tl > li.fade { opacity: 0; transform: translateY(8px); }
+    .tl { position: relative; list-style: none; margin: 0; padding: 0 0 0 30px; }
+    .tl::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); border-radius: 2px; }
+    .tl > li { position: relative; margin-bottom: 18px; }
+    .tl > li::before { content: ""; position: absolute; left: -30px; top: 22px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--dot, var(--research)); }
+    .tl .research { --dot: var(--research); }
+    .tl .work { --dot: var(--work); }
+    .tl .edu { --dot: var(--edu); }
+    .entry { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; transition: transform .2s, box-shadow .2s; }
+    .entry:hover { transform: translateX(3px); box-shadow: 0 8px 24px rgba(90,60,30,.08); }
+    .when { font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--dot, var(--muted)); }
+    .entry h3 { font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.3; margin: 4px 0 2px; }
+    .entry .who { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+    .entry p { font-size: 15px; margin-bottom: 10px; }
+    .nums { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
+    .num { font-size: 13px; background: color-mix(in srgb, var(--dot, var(--accent)) 12%, transparent); color: var(--ink); padding: 3px 10px; border-radius: 8px; }
+    .num b { color: var(--dot, var(--accent)); }
+    .num sup, .note sup { font-size: 10px; line-height: 0; margin-left: 1px; color: var(--muted); }
+    .entry p.note { font-size: 12.5px; color: var(--faint); margin: 10px 0 0; }
+    .more { font-size: 14px; display: flex; gap: 14px; margin-top: 8px; }
+
+    /* Projects */
+    .proj { display: grid; gap: 2px; }
+    .proj a.row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; text-decoration: none; color: var(--ink); padding: 12px 14px; margin: 0 -14px; border-radius: 12px; }
+    .proj a.row:hover { background: var(--card); }
+    .proj strong { font-weight: 600; }
+    .proj span.d { display: block; font-size: 14.5px; color: var(--muted); }
+    .proj svg { color: var(--faint); }
+    .proj a.row:hover svg { color: var(--accent); }
+
+    .honours { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .honours li { display: grid; grid-template-columns: 104px 1fr; gap: 10px; font-size: 15px; }
+    .honours time { font-weight: 600; color: var(--faint); font-size: 14px; white-space: nowrap; }
+    .honours small { display: block; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+    footer { color: var(--faint); font-size: 13.5px; border-top: 1px solid var(--line); padding-top: 22px; }
+
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .entry:hover { transform: none; } }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; gap: 28px; padding: 0 16px 28px; }
+      /* Compact sticky header; links open from the menu button */
+      .side { position: sticky; top: 0; z-index: 5; max-height: none; overflow: visible; margin: 0 -16px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; column-gap: 12px; align-items: center; }
+      .avatar { width: 48px; height: 48px; border-width: 2px; grid-row: 1 / span 2; }
+      .side h1 { margin: 0; font-size: 19px; }
+      .side .role { margin: 0; font-size: 13px; line-height: 1.35; }
+      .side .role span { display: inline; white-space: normal; }
+      .side .role span + span::before { content: ", "; }
+      .menu-btn { display: grid; place-items: center; grid-column: 3; grid-row: 1 / span 2; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); cursor: pointer; }
+      html.menu-open .menu-btn svg { transform: rotate(180deg); }
+      .side-more { grid-column: 1 / -1; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+      .side-more > div { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s .3s; }
+      html.menu-open .side-more { grid-template-rows: 1fr; }
+      html.menu-open .side-more > div { visibility: visible; transition: none; }
+      .side ul { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 14px 0 12px; }
+      .cv-note { margin: -4px 0 12px; }      .side li a { margin: 0; padding: 4px 0; }
+      .collapse-btn { display: none; }
+      .side-actions { margin: 12px 0 4px; }
+      main { padding-top: 8px; }
+      .updates li { grid-template-columns: 1fr; gap: 0; }
+      .tl { padding-left: 24px; }
+      .tl > li::before { left: -24px; width: 14px; height: 14px; }
+      .tl::before { left: 6px; }
+      .entry { padding: 16px; }
+    }
+    /* ── Decorative effects: glow, sparkles, shimmer, photo ring, live dots ──
+       Safe to delete this whole block, the <canvas id="sparkles"> line and the "Sparkles" script. */
+    :root { --gold: #c48a2c; --glow-a: rgba(214, 120, 70, .13); --glow-b: rgba(201, 151, 63, .10); --glow-c: rgba(185, 83, 42, .05); --spark: 186, 128, 38; --spark-alpha: .8; --spark-size: 1.3; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --gold: #f1c27d; --glow-a: rgba(236, 138, 94, .10); --glow-b: rgba(133, 170, 240, .07); --spark: 255, 226, 180; --spark-alpha: .85; --spark-size: 1; --glow-c: transparent; }
+    }
+    :root[data-theme="dark"] { --gold: #f1c27d; --glow-a: rgba(236, 138, 94, .10); --glow-b: rgba(133, 170, 240, .07); --spark: 255, 226, 180; --spark-alpha: .85; --spark-size: 1; --glow-c: transparent; }
+    body { background-image: radial-gradient(60vw 55vh at 0% 0%, var(--glow-a), transparent 70%), radial-gradient(55vw 55vh at 100% 100%, var(--glow-b), transparent 70%), radial-gradient(40vw 40vh at 70% 10%, var(--glow-c), transparent 70%); background-attachment: fixed; }
+    #sparkles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .layout { position: relative; z-index: 1; }
+
+    /* A slow gold sheen that sweeps across the headline highlights */
+    .hello em { background: linear-gradient(100deg, var(--accent) 0%, var(--accent) 40%, var(--gold) 50%, var(--accent) 60%, var(--accent) 100%); background-size: 300% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; animation: sheen 7s ease-in-out infinite; }
+    @keyframes sheen { 0%, 55% { background-position: 100% 0; } 85%, 100% { background-position: 0% 0; } }
+
+    /* Slowly turning gold ring around the photo */
+    @property --spin { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+    .avatar-ring { display: grid; width: max-content; border-radius: 50%; padding: 3px; background: conic-gradient(from var(--spin), var(--accent), var(--gold), var(--accent-soft), var(--gold), var(--accent)); animation: spin 14s linear infinite; }
+    .avatar-ring { box-shadow: 0 6px 18px rgba(90, 60, 30, .16); }
+    html.rail .avatar-ring { padding: 2px; }
+    @keyframes spin { to { --spin: 360deg; } }
+
+    /* Small sparkle mark before section headings */
+    h2::before { content: "✦"; font-size: .5em; color: var(--gold); margin-right: -6px; }
+
+    /* Soft pulse on the timeline dots of ongoing work, and a tinted glow on card hover */
+    .tl > li.live::before { animation: pulse 2.6s ease-out infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--dot) 45%, transparent); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
+    .entry:hover { box-shadow: 0 10px 30px color-mix(in srgb, var(--dot, var(--accent)) 14%, transparent); }
+
+    @media (max-width: 860px) { .avatar-ring { grid-row: 1 / span 2; padding: 2px; } }
+    @media (prefers-reduced-motion: reduce) { .hello em, .avatar-ring, .tl > li.live::before { animation: none; } }
+  </style>
+</head>
+<body>
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a10.9 10.9 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.3 22H3.2l7.3-8.3L1 2h6.4l4.4 5.8zm-1.1 18h1.7L6.3 3.9H4.5z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  </svg>
+
+  <div class="layout">
+    <aside class="side">
+      <div class="avatar-ring"><img class="avatar" src="images/profile.jpg" alt="Portrait of Aritra Ambudh Dutta" width="164" height="164"></div>
+      <h1>Aritra Ambudh Dutta</h1>
+      <p class="role"><span>Senior Undergraduate</span><span>Computer Science and Engineering</span><span>Indian Institute of Technology, Kanpur</span></p>
+      <button class="menu-btn" id="menu" type="button" aria-expanded="false" aria-controls="side-more" aria-label="Show links"><svg class="i"><use href="#i-down"/></svg></button>
+      <div class="side-more" id="side-more"><div>
+        <ul>
+          <li><a href="mailto:aritraambudhdutta@gmail.com" title="Email"><svg class="i"><use href="#i-mail"/></svg><span class="t">Email</span></a></li>
+          <li><a href="mailto:aritraad23@iitk.ac.in" title="IITK Email"><svg class="i"><use href="#i-cap"/></svg><span class="t">IITK Email</span></a></li>
+          <li><a href="https://github.com/AritraAmbudhDutta" title="GitHub"><svg class="i"><use href="#i-gh"/></svg><span class="t">GitHub</span></a></li>
+          <li><a href="https://www.linkedin.com/in/aritra-ambudh-dutta-944795293/" title="LinkedIn"><svg class="i"><use href="#i-in"/></svg><span class="t">LinkedIn</span></a></li>
+          <li><a href="https://twitter.com/aurriemartinez" title="Twitter"><svg class="i"><use href="#i-x"/></svg><span class="t">Twitter</span></a></li>
+        </ul>
+        <p class="cv-note"><a href="mailto:aritraambudhdutta@gmail.com?subject=CV%20request%20via%20your%20website&amp;body=Hi%20Aritra%2C%0D%0A%0D%0AI%20came%20across%20your%20website%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20CV.%0D%0A%0D%0AName%3A%20%0D%0ARole%20and%20organisation%3A%20%0D%0APurpose%20(e.g.%20internship%2C%20research%20collaboration)%3A%20%0D%0A%0D%0AThanks%2C%0D%0A" title="Email me for my CV">Contact for CV</a></p>
+        <div class="now"><b>Currently</b>Teaching models to understand Indian Sign Language from raw video, without labelled data, and adapting small language models to correct grammar in Bangla.</div>
+        <div class="side-actions">
+          <button class="pill theme-btn" id="theme" type="button" title="Toggle light/dark"><svg class="i sun"><use href="#i-sun"/></svg><svg class="i moon"><use href="#i-moon"/></svg><span class="t">Theme</span></button>
+          <button class="pill collapse-btn" id="collapse" type="button" aria-expanded="true" title="Collapse sidebar"><svg class="i"><use href="#i-left"/></svg><span class="t">Collapse</span></button>
+        </div>
+      </div></div>
+    </aside>
+
+    <main>
+      <section>
+        <p class="hello">Hi, I'm Aritra. I build models that learn <em>from little supervision</em> and the <em>fast, low-level systems</em> they run on.</p>
+        <p>I'm a senior at IIT Kanpur (class of 2027), and I work on machine learning for language and vision. Right now I'm working on self-supervised models that understand Indian Sign Language from video and pose, and building an SLM-based grammar correction system for Bangla.</p>
+        <p>Outside of ML, I enjoy working on low-level systems. This summer at <a href="https://www.quadeye.com/">Quadeye Securities</a> I built the wire side of a 10G Ethernet NIC on an FPGA, and it ended with a Pre-Placement Offer.</p>
+      </section>
+
+      <section class="reveal">
+        <h2>Updates</h2>
+        <ul class="updates">
+          <li><time>Aug 2026</time><span>Started working on Indic NLP, building SHUDDHI, a Bangla grammatical error correction system, under the guidance of Prof. Arnab Bhattacharya.</span></li>
+          <li><time>Jul 2026</time><span>Finished my Systems Engineering internship at Quadeye Securities and received a Pre-Placement Offer.</span></li>
+          <li><time>May 2026</time><span>Perfect 10.0 SPI in the 2025–26 spring semester.</span></li>
+          <li><time>Jan 2026</time><span>Full merit scholarship to the Annual Nepal AI School 2025 by NAAMII.</span></li>
+          <li><time>May 2025</time><span>Joined the <a href="https://exploration-lab.github.io/">Exploration Lab</a>, IIT Kanpur, as an undergraduate researcher under Prof. Ashutosh Modi, working on self-supervised sign language representations.</span></li>
+        </ul>
+      </section>
+
+      <section class="reveal">
+        <h2>Interests</h2>
+        <div class="chips">
+          <span class="chip">Self-Supervised Learning</span>
+          <span class="chip">World Models &amp; JEPA</span>
+          <span class="chip">Sign Language Understanding</span>
+          <span class="chip">Computer Vision</span>
+          <span class="chip">LLM Post-Training</span>
+          <span class="chip">Reinforcement Learning for LLM Reasoning</span>
+          <span class="chip">Low-Resource NLP</span>
+          <span class="chip">Low-Latency Systems</span>
+          <span class="chip">Multi-Core Architectures</span>
+          <span class="chip">CUDA &amp; GPU Programming</span>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2>Journey</h2>
+        <div class="filters" role="group" aria-label="Filter the journey">
+          <button class="filter" type="button" data-f="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-f="research" aria-pressed="false" style="--c:var(--research)"><i></i>Research</button>
+          <button class="filter" type="button" data-f="work" aria-pressed="false" style="--c:var(--work)"><i></i>Industry</button>
+          <button class="filter" type="button" data-f="edu" aria-pressed="false" style="--c:var(--edu)"><i></i>Education</button>
+        </div>
+        <ol class="tl">
+          <li class="research live"><div class="entry">
+            <div class="when">Jul 2026 — Ongoing</div>
+            <h3>SHUDDHI: Bangla Grammatical Error Correction</h3>
+            <div class="who">Prof. Arnab Bhattacharya, IIT Kanpur</div>
+            <p>Adapting SLMs to correct grammar in Bangla through a multi-stage training pipeline, with an evaluation that rewards real corrections rather than simply copying the input.</p>
+            <div class="nums"><span class="num"><b>0.76</b> F0.5 on a held-out test set</span><span class="num">Over-correction <b>more than halved</b></span></div>
+          </div></li>
+
+          <li class="work"><div class="entry">
+            <div class="when">May — Jul 2026</div>
+            <h3>Systems Engineering Intern, Quadeye Securities</h3>
+            <div class="who">QENIC: a low-latency Ethernet NIC</div>
+            <p>Designed and built the wire side of the NIC: the transceiver, PCS, MAC and clock-domain-crossing path from the SFP port to the application, on an FPGA. Added a reset supervisor that recovers from cable pulls without adding any latency.</p>
+            <div class="nums"><span class="num"><b>Latency-optimised</b> datapath</span><span class="num"><b>Faster</b> than a commercial low-latency NIC at every frame size</span><span class="num"><b>Pre-Placement Offer</b></span></div>
+          </div></li>
+
+          <li class="research live"><div class="entry">
+            <div class="when">Jan 2026 — Ongoing</div>
+            <h3>SignJEPA: Self-Supervised Sign Language Representation Learning</h3>
+            <div class="who">Prof. Ashutosh Modi · Exploration Lab, IIT Kanpur</div>
+            <p>Learning sign language representations from raw video without labels, using joint-embedding predictive architectures (JEPAs). Early results beat every published baseline on three iSign tasks; now extending the approach to more sign languages.</p>
+            <div class="nums"><span class="num">Word Presence Prediction <b>96.1%</b> vs 52.0%<sup>#</sup></span><span class="num">Semantic Similarity Prediction <b>94.5%</b> vs 67.0%<sup>#</sup></span><span class="num">Isolated Sign Recognition <b>23.9%</b> vs 16.8%<sup>#</sup></span></div>
+            <p class="note"><sup>#</sup> Baselines reported in Joshi et al., <a href="https://exploration-lab.github.io/iSign/"><i>iSign: A Benchmark for Indian Sign Language Processing</i></a>, ACL 2024</p>
+          </div></li>
+
+          <li class="research"><div class="entry">
+            <div class="when">Jan — Apr 2026</div>
+            <h3>Multi-Turn Ambiguity Clarification with Knowledge Graphs</h3>
+            <div class="who">Mentor: Reevu Maity, Walmart</div>
+            <p>Knowledge graphs built from CoQA stories with Neo4j drive grounded clarification dialogues, compared against LLM-generated trees.</p>
+          </div></li>
+
+          <li class="research"><div class="entry">
+            <div class="when">May — Nov 2025</div>
+            <h3>Sign Language Translation for Indian Sign Language</h3>
+            <div class="who">SURGE, continued as UG project · Prof. Ashutosh Modi</div>
+            <p>Collected the largest known ISL dataset from YouTube, and applied optimal-transport-guided procedure learning to sign language for the first time.</p>
+          </div></li>
+
+          <li class="edu"><div class="entry">
+            <div class="when">2023 — 2027</div>
+            <h3>B.Tech, Computer Science &amp; Engineering</h3>
+            <div class="who">Indian Institute of Technology Kanpur · CGPA <strong>9.4</strong> / 10</div>
+            <p>Academic Excellence Award in two consecutive years, and a perfect 10.0 SPI in the sixth semester.</p>
+          </div></li>
+
+          <li class="edu"><div class="entry">
+            <div class="when">2023</div>
+            <h3>Class XII, CBSE</h3>
+            <div class="who">Narayana School Kalyani Expressway, Sodepur, West Bengal · <strong>97%</strong></div>
+            <div class="nums"><span class="num">English</span><span class="num">Bengali</span><span class="num">Mathematics</span><span class="num">Physics</span><span class="num">Chemistry</span><span class="num">Physical Education</span></div>
+          </div></li>
+
+          <li class="edu"><div class="entry">
+            <div class="when">2021</div>
+            <h3>Class X, WBBSE</h3>
+            <div class="who">Ramakrishna Mission Boys' Home, Rahara, Kolkata · <strong>97%</strong></div>
+            <div class="nums"><span class="num">English</span><span class="num">Bengali</span><span class="num">Mathematics</span><span class="num">Physical Science</span><span class="num">Life Science</span><span class="num">Geography</span><span class="num">History</span></div>
+          </div></li>
+        </ol>
+      </section>
+
+      <section class="reveal">
+        <h2>Things I've built</h2>
+        <div class="proj">
+          <a class="row" href="https://github.com/AritraAmbudhDutta/CS780-OBELIX"><span><strong>OBELIX: the Warehouse Robot</strong><span class="d">Reinforcement learning agents for a partially observable warehouse, trained with reward shaping and a curriculum objective</span></span><svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="https://github.com/AritraAmbudhDutta/CS633-Assignments-2025-26-II"><span><strong>Parallel Computing on Distributed Systems</strong><span class="d">Deadlock-free MPI communication that overlaps data exchange with computation, scaled across PARAM Rudra</span></span><svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="https://github.com/AritraAmbudhDutta/Operating-Systems-CS330-Labs"><span><strong>gemOS Kernel Design</strong><span class="d">Scheduling, system calls, memory mapping and copy-on-write fork in an x86 teaching kernel</span></span><svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="https://github.com/AritraAmbudhDutta/IITK-Mini-MIPS"><span><strong>IITK-Mini-MIPS</strong><span class="d">A 32-bit MIPS processor in Verilog, running on a PYNQ-Z2 FPGA</span></span><svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="https://github.com/AritraAmbudhDutta/Brain-Spy"><span><strong>Brain-Spy</strong><span class="d">3D CNN screening MRI scans for early Alzheimer's</span></span><svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="https://github.com/AritraAmbudhDutta/Roomble"><span><strong>Roomble</strong><span class="d">MERN Stack app for room hunting and roommate matching</span></span><svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2>Academic Achievements</h2>
+        <ul class="honours">
+          <li><time>2026</time><span>Full merit scholarship (100% waiver) to the <a href="https://www.anais.naamii.org.np/">Annual Nepal AI School</a>, organised by <a href="https://www.naamii.org.np/">NAAMII</a></span></li>
+          <li><time>2025</time><span>Academic Excellence Award, IIT Kanpur, in two consecutive academic years</span></li>
+          <li><time>2025</time><span>Selected for the Amazon ML Summer School</span></li>
+          <li><time>2023</time><span>All India Rank <strong>162</strong> in JEE Advanced</span></li>
+          <li><time>2023</time><span>All India Rank <strong>201</strong> in JEE Main</span></li>
+          <li><time>2023</time><span>State Rank <strong>6</strong> in WBJEE (Engineering Stream)</span></li>
+          <li><time>2023</time><span>Qualified for INPhO, INChO and INAO, the Indian National Olympiads in Physics, Chemistry and Astronomy, ranking in the National Top <strong>1%</strong></span></li>
+          <li><time>2022</time><span>All India Rank <strong>382</strong> in KVPY-SA, conducted by IISc Bangalore</span></li>
+          <li><time>2021</time><span>State Rank <strong>3</strong> in NTSE Stage 1, West Bengal</span></li>
+          <li><time>2021</time><span>Selected as a Junior Scholar by the Jagadis Bose National Science Talent Search (JBNSTS), West Bengal</span></li>
+        </ul>
+      </section>
+
+      <section class="reveal">
+        <h2>Courses</h2>
+        <div class="chips">
+          <span class="chip">Foundations of Modern AI</span>
+          <span class="chip">GPU Architecture &amp; Programming</span>
+          <span class="chip">Parallel Programming</span>
+          <span class="chip">Deep Reinforcement Learning</span>
+          <span class="chip">Data Science &amp; Machine Intelligence</span>
+          <span class="chip">Operating Systems</span>
+          <span class="chip">Parallel Computing</span>
+          <span class="chip">Computer Networks</span>
+          <span class="chip">Computer Organisation</span>
+          <span class="chip">Data Structures &amp; Algorithms</span>
+          <span class="chip">Advanced Algorithms</span>
+          <span class="chip">Mathematical Finance</span>
+          <span class="chip">Probability &amp; Statistics</span>
+          <span class="chip">Linear Algebra</span>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2>Around campus</h2>
+        <ul class="honours">
+          <li><time>2025–26</time><span><strong>Academic Department Mentor, CSE, IITK</strong><small>Point of contact for 200+ undergraduates on courses, projects and academic concerns</small></span></li>
+          <li><time>2025–26</time><span><strong>Coordinator, Association for Computing Activities (ACA)</strong><small>Led a team of 8 secretaries and 90+ student mentors running 22 Computer Science projects for 700+ freshers, and organised department events</small></span></li>
+          <li><time>2024–25</time><span><strong>Team Member, Equipe de Robotique Autonome</strong><small>Built autonomous football robots for RoboCup Middle Size League, working on vision and motion planning</small></span></li>
+          <li><time>2024–25</time><span><strong>Secretary, Quiz Club IIT Kanpur</strong><small>Designed and hosted campus-wide quizzes, and led planning and outreach for the club</small></span></li>
+        </ul>
+      </section>
+
+      <footer>© 2026 Aritra Ambudh Dutta · Last updated October 2026</footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      function current() {
+        return root.getAttribute('data-theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      }
+      root.setAttribute('data-theme', current());
+      document.getElementById('theme').addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+
+      // Desktop: collapse the sidebar to an icon rail (remembered between visits)
+      var collapse = document.getElementById('collapse');
+      function syncRail() {
+        var rail = root.classList.contains('rail');
+        collapse.setAttribute('aria-expanded', String(!rail));
+        collapse.title = rail ? 'Expand sidebar' : 'Collapse sidebar';
+        collapse.querySelector('.t').textContent = rail ? 'Expand' : 'Collapse';
+      }
+      collapse.addEventListener('click', function () {
+        root.classList.toggle('rail');
+        try { localStorage.setItem('sidebar', root.classList.contains('rail') ? 'rail' : 'open'); } catch (e) {}
+        syncRail();
+      });
+      syncRail();
+
+      // Phone: open/close the links under the compact header
+      var menu = document.getElementById('menu');
+      menu.addEventListener('click', function () {
+        var open = root.classList.toggle('menu-open');
+        menu.setAttribute('aria-expanded', String(open));
+        menu.setAttribute('aria-label', open ? 'Hide links' : 'Show links');
+      });
+
+      // Journey filters: show all entries, or only one kind
+      var filters = document.querySelectorAll('.filter');
+      var entries = document.querySelectorAll('.tl > li');
+      filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var f = btn.getAttribute('data-f');
+          filters.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+          entries.forEach(function (li) {
+            var show = f === 'all' || li.classList.contains(f);
+            if (!show) { li.classList.add('hide'); return; }
+            if (li.classList.contains('hide')) {
+              li.classList.remove('hide');
+              li.classList.add('fade');
+              requestAnimationFrame(function () { requestAnimationFrame(function () { li.classList.remove('fade'); }); });
+            }
+          });
+        });
+      });
+
+      // Sparkles: a sparse field of slowly twinkling four-point stars behind the page
+      (function () {
+        var cv = document.getElementById('sparkles');
+        if (!cv || !cv.getContext) return;
+        var ctx = cv.getContext('2d'), dpr = Math.min(window.devicePixelRatio || 1, 2), W, H, stars = [];
+        var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function prop(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
+        function size() {
+          W = window.innerWidth; H = window.innerHeight;
+          cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          // keep sparkles off the text: only in the side margins and the gap between the columns
+          var cols = ['.side', 'main'].map(function (q) { var r = document.querySelector(q).getBoundingClientRect(); return [r.left - 10, r.right + 10]; });
+          function onText(x) { return cols.some(function (c) { return x > c[0] && x < c[1]; }); }
+          stars = [];
+          for (var i = 0, n = Math.round(W * H / 26000), tries = 0; stars.length < n && tries < n * 30; tries++) {
+            var x = Math.random() * W;
+            if (onText(x)) continue;
+            stars.push({ x: x, y: Math.random() * H, r: 0.6 + Math.random() * 1.6, p: Math.random() * 6.3, s: 0.25 + Math.random() * 0.6 });
+          }
+        }
+        function star(x, y, r) {
+          var l = r * 3;
+          ctx.beginPath(); ctx.moveTo(x, y - l);
+          ctx.quadraticCurveTo(x, y, x + l, y); ctx.quadraticCurveTo(x, y, x, y + l);
+          ctx.quadraticCurveTo(x, y, x - l, y); ctx.quadraticCurveTo(x, y, x, y - l);
+          ctx.fill();
+        }
+        function draw(t) {
+          var c = prop('--spark'), a = parseFloat(prop('--spark-alpha')) || 0.5, k = parseFloat(prop('--spark-size')) || 1;
+          ctx.clearRect(0, 0, W, H);
+          stars.forEach(function (s) {
+            var tw = still ? 0.5 : (Math.sin(t / 1000 * s.s + s.p) + 1) / 2;
+            ctx.fillStyle = 'rgba(' + c + ',' + (a * tw * tw).toFixed(3) + ')';
+            star(s.x, s.y, s.r * k);
+          });
+        }
+        var last = 0;
+        function loop(t) { if (!document.hidden && t - last > 40) { draw(t); last = t; } requestAnimationFrame(loop); }
+        size();
+        window.addEventListener('resize', function () { size(); draw(performance.now()); });
+        // the columns move when the sidebar collapses, so re-place the sparkles after its animation
+        document.getElementById('collapse').addEventListener('click', function () { setTimeout(function () { size(); draw(performance.now()); }, 400); });
+        new MutationObserver(function () { draw(performance.now()); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+        if (still) draw(0); else requestAnimationFrame(loop);
+      })();
+
+      var items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
